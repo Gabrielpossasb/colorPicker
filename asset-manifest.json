@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Aplicacao-Balanco-de-Contas/static/css/main.e6c13ad2.css",
+    "main.js": "/Aplicacao-Balanco-de-Contas/static/js/main.50fd9e7a.js",
+    "index.html": "/Aplicacao-Balanco-de-Contas/index.html",
+    "main.e6c13ad2.css.map": "/Aplicacao-Balanco-de-Contas/static/css/main.e6c13ad2.css.map",
+    "main.50fd9e7a.js.map": "/Aplicacao-Balanco-de-Contas/static/js/main.50fd9e7a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.50fd9e7a.js"
+  ]
+}
