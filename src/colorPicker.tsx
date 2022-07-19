@@ -1,58 +1,118 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-interface State {
-   color: string;
+interface ThemeSelectProps {
+   theme: {
+      id: string,
+      background: string,
+      textFundo: string,
+      button: string,
+      border: string,  
+   }
 }
 
-const Container = styled.span <State>`
-   display: inline-flex;
+const Container = styled.div <ThemeSelectProps>`
+   display: flex;
+   margin: 2rem;
+   flex-direction: column;
+   justify-content: center;
    align-items: center;
-   padding: 4px 12px;
-   border: 1px solid #bfc9d9;
-   border-radius: 4px;
+   background: ${(props) => props.theme.background};
+   gap: 2rem;
+   padding: 4rem 2rem;
+   border: 1rem solid ${(props) => props.theme.border};
+   height: 65vh;
+
+   border-radius: 1rem;
 
    h1 {
-      background: ${(props) => props.color};
+      background: ${(props) => props.theme.button};
+      color: ${(props) => props.theme.textFundo};
+      padding: 1rem;
+      text-align: center;
+      margin-left: 2rem;
+      border-radius: 25px;
+      width: 400px;
+      border: 2px solid ${(props) => props.theme.border};
    }
 
-   input[type="color"] {
-      border: none;
-      margin-right: 8px;
-      background: none;
-      width: 50px;
-      height: 50px;
+   div {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
 
+      button {
+         width: 4rem;
+         height: 4rem;
+         border: 0;
+         border-radius: 1rem;
       
+         &:hover {
+            border: 2px solid #2dff03;
+         }
+      }
+
+      button.themRed {
+         background: #ca1515;
+      }
+      button.themYellow {
+         background: #f3d21a;
+      }
+      button.themPurple {
+         background: #8c2ec2;
+      }
+      button.themCian {
+         background: #35d7e2;
+      }
+   }
+   
+
+   button.aplicar {
+      padding: 1rem 2rem;
+      border-radius: 4rem;
+      background: #020202;
+      border: 0;
+      font-weight: 800;
+      font-size: 20px;
+      color: #fff;
+      transition: background 0.8s;
+
+      &:hover {
+         background: #ffffff;
+         color: #020202;
+      }
    }
 
-   input[type="text"] {
-      border: none;
-      font-size: 14px;
-   }
 `;
 
-interface Val {
-   value: string;
-   setValue: string;
+interface ThemeProps {
+   theme: {
+      id: string,
+      background: string,
+      textFundo: string,
+      button: string,
+      border: string,  
+   },
+   setarTheme: (arg0 :string) => void
 }
 
-export function ColorPicker({}: Val) {
-   const [state, setState] = useState('#FFF');
-   const [color, setColor] = useState('#FFF');
-
-   function handleInput(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-      )  {
-         setState(e.target.value);
-         
-    };
-
+export function ColorPicker({theme, setarTheme }: ThemeProps) {
+   const [themeSelect, setThemeSelect] = useState('yellow')
    return (
-      <Container color={color}>
-         <input type="color" onChange={(e)=>handleInput(e)} value={state}/>
-         <input type="text" value={state} onChange={(e)=>handleInput(e)}/>
-         <button onClick={() => setColor(state)}>Aplicar</button>
+      <Container theme={theme}>
+         <div>
+            <button onClick={() => setThemeSelect('red')} className='themRed'></button>
+            <button onClick={() => setThemeSelect('yellow')} className='themYellow'></button>
+            <button onClick={() => setThemeSelect('purple')} className='themPurple'></button>
+            <button onClick={() => setThemeSelect('cian')} className='themCian'></button>
+         </div>
+
+         
+         <button onClick={() => setarTheme(themeSelect)} className='aplicar'>SET</button>
          <h1>Teste</h1>
+         
       </Container>
    );
 }
